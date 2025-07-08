@@ -1,0 +1,12 @@
+version: "3"
+
+interval: 500ms
+
+tasks:
+  build:
+    desc: Builds the Go application
+    watch: true
+    sources:
+      - "**/*.go"
+    cmds:
+      - go run main.go
