@@ -1,8 +1,7 @@
 package main
 
 import (
-	"decomposition/internal/app/handlers/echo"
-	"decomposition/internal/app/handlers/ping"
+	"decomposition/internal/app/handlers/routers"
 	"decomposition/internal/app/middleware"
 	"fmt"
 	"net/http"
@@ -11,12 +10,7 @@ import (
 func main() {
 
 	router := http.NewServeMux()
-	router.HandleFunc("GET /ping", ping.PingHandler)
-	router.HandleFunc("POST /echo", echo.EchoHandler)
-
-	// http.HandleFunc("/ping", middleware.Middleware(ping.PingHandler))
-
-	// http.HandleFunc("POST /echo", middleware.Middleware(echo.EchoHandler))
+	routers.Router(router)
 
 	err := http.ListenAndServe(":8080", middleware.Middleware(router))
 	if err != nil {
